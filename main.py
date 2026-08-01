@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from sqlalchemy import create_engine, Column, Integer, String, Text, Date, TIMESTAMP, text
 from sqlalchemy.ext.declarative import declarative_base
@@ -12,6 +13,7 @@ app = FastAPI()
 
 # Allow CORS for frontend interaction
 app.add_middleware(
+
     CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
@@ -112,3 +114,7 @@ def delete_student(id: int):
     db.delete(db_student)
     db.commit()
     return {"success": True, "message": "Student deleted successfully"}
+
+# Mount static files at the root so the frontend is served (Render uses this)
+app.mount("/", StaticFiles(directory=".", html=True), name="static")
+
