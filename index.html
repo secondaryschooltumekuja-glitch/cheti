@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUMEKUJA Computer Training - Certificate System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <h1>TUMEKUJA COMPUTER TRAINING</h1>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn active" onclick="showSection('registration')">
+                    <i class="fas fa-user-plus"></i> Sajili Mwanafunzi
+                </button>
+                <button class="nav-btn" onclick="showSection('students')">
+                    <i class="fas fa-users"></i> Wanafunzi Waliosajiliwa
+                </button>
+                <button class="nav-btn" onclick="showSection('certificates')">
+                    <i class="fas fa-certificate"></i> Vyeti
+                </button>
+            </nav>
+        </header>
+
+        <!-- Registration Section -->
+        <div id="registration" class="section active">
+            <div class="form-container">
+                <h2><i class="fas fa-user-plus"></i> Sajili Mwanafunzi Mpya</h2>
+                <form id="studentForm">
+                    <div class="form-group">
+                        <label for="studentName">Jina la Mwanafunzi:</label>
+                        <input type="text" id="studentName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="course">Kozi Aliyohitimu:</label>
+                        <select id="course" required>
+                            <option value="">Chagua Kozi</option>
+                            <option value="Computer Basics">Computer Basics</option>
+                            <option value="Microsoft Office">Microsoft Office</option>
+                            <option value="Web Design">Web Design</option>
+                            <option value="Graphics Design">Graphics Design</option>
+                            <option value="Programming">Programming</option>
+                            <option value="Digital Marketing">Digital Marketing</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="teacherName">Jina la Mwalimu:</label>
+                        <input type="text" id="teacherName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="studentPhoto">Picha ya Mwanafunzi:</label>
+                        <input type="file" id="studentPhoto" accept="image/*">
+                        <div class="photo-preview" id="photoPreview"></div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-save"></i> Sajili Mwanafunzi
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Students List Section -->
+        <div id="students" class="section">
+            <div class="students-container">
+                <h2><i class="fas fa-users"></i> Wanafunzi Waliosajiliwa</h2>
+                <div class="search-bar">
+                    <input type="text" id="searchStudent" placeholder="Tafuta mwanafunzi...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div id="studentsList" class="students-grid"></div>
+                <div class="bulk-actions">
+                    <button onclick="printAllCertificates()" class="action-btn">
+                        <i class="fas fa-print"></i> Chapisha Vyeti Vyote
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certificates Section -->
+        <div id="certificates" class="section">
+            <div class="certificates-container">
+                <h2><i class="fas fa-certificate"></i> Vyeti</h2>
+                <div id="certificateView"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Certificate Template (Hidden) -->
+    <div id="certificateTemplate" class="certificate-template" style="display: none;">
+        <div class="certificate">
+            <div class="certificate-border">
+                <div class="certificate-header">
+                    <div class="logo-section">
+                        <i class="fas fa-graduation-cap certificate-logo"></i>
+                    </div>
+                    <h1 class="institution-name">TUMEKUJA COMPUTER TRAINING</h1>
+                    <div class="certificate-title">CERTIFICATE OF COMPLETION</div>
+                </div>
+                
+                <div class="certificate-body">
+                    <div class="award-text">
+                        This is to certify that
+                    </div>
+                    
+                    <div class="student-info">
+                        <div class="student-photo-container">
+                            <img src="" alt="Student Photo" class="student-photo">
+                        </div>
+                        <div class="student-name"></div>
+                    </div>
+                    
+                    <div class="completion-text">
+                        has successfully completed the course of
+                    </div>
+                    
+                    <div class="course-name"></div>
+                    
+                    <div class="completion-details">
+                        at this training institute with excellent performance
+                    </div>
+                </div>
+                
+                <div class="certificate-footer">
+                    <div class="signatures">
+                        <div class="signature-section">
+                            <div class="signature-line"></div>
+                            <div class="signature-label">Instructor</div>
+                            <div class="teacher-name"></div>
+                        </div>
+                        
+                        <div class="signature-section">
+                            <div class="signature-line"></div>
+                            <div class="signature-label">Director</div>
+                            <div class="director-name">Institute Director</div>
+                        </div>
+                    </div>
+                    
+                    <div class="certificate-date">
+                        <div class="date-label">Date:</div>
+                        <div class="date-value"></div>
+                    </div>
+                </div>
+                
+                <div class="certificate-seal">
+                    <i class="fas fa-award"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
