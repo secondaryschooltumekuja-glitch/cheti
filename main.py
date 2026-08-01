@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
-from sqlalchemy import create_engine, Column, Integer, String, Text, Date, TIMESTAMP, text
+from sqlalchemy import create_engine, Column, Integer, String, Text, Date, TIMESTAMP, text, func
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import datetime
@@ -38,8 +38,8 @@ try:
         teacher_name = Column(String(255), nullable=False)
         photo = Column(Text, nullable=True)
         registration_date = Column(Date, nullable=False)
-        created_at = Column(TIMESTAMP, server_default=text('CURRENT_TIMESTAMP'))
-        updated_at = Column(TIMESTAMP, server_default=text('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
+        created_at = Column(TIMESTAMP, server_default=func.now())
+        updated_at = Column(TIMESTAMP, server_default=func.now(), onupdate=func.now())
 
     # Create table if it doesn't exist
     Base.metadata.create_all(bind=engine)
